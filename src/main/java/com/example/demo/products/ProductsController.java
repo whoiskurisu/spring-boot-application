@@ -16,8 +16,13 @@ public class ProductsController {
 
         // Serve Static HTML
         @GetMapping("/")
-        public String homePage() {
-                return "html/index.html"; // Maps to src/main/resources/static/html/index.html
+        public String getHomePage() {
+                return "/html/index.html"; // Maps to src/main/resources/static/html/index.html
+        }
+
+        @GetMapping("/products/{productID}")
+        public String getProductPage() {
+                return "/html/products.html"; // Maps to src/main/resources/static/html/products.html
         }
 
         // Serve REST API
