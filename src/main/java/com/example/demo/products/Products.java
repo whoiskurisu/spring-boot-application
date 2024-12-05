@@ -1,7 +1,13 @@
 package com.example.demo.products;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "product-data") // Maps to 'product-data' collection in MongoDB
 public class Products {
+
+    @Id
     // Attributes (Instance variables)
+    private String mongoId;
     private int id;
     private String name;
     private String status;
@@ -12,6 +18,15 @@ public class Products {
     public Products() {
     }
 
+    // Getter and Setter for mongoId
+    public String getMongoId() {
+        return mongoId;
+    }
+
+    public void setMongoId(String mongoId) {
+        this.mongoId = mongoId;
+    }
+    
     // Getter and Setter for id
     public int getId() {
         return id;

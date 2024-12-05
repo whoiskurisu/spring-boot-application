@@ -2,7 +2,7 @@
 
 async function fetchData() {
     try {
-      const productID = window.location.href.slice(-4);
+      const productID = window.location.href.split('/').pop();
       if(productID > 1016 || productID < 1001){
         return alert("This id does not exist");
       }

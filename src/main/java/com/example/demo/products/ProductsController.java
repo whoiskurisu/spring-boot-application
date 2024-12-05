@@ -1,14 +1,11 @@
 package com.example.demo.products;
 
-import java.io.IOException;
 import java.util.List;
 
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 // Controller that handles static HTML files and REST API endpoints
@@ -25,21 +22,14 @@ public class ProductsController {
                 return "/html/products.html"; // Maps to src/main/resources/static/html/products.html
         }
 
-        // Serve REST API
+        @Autowired
+        private ProductRepository productRepository;
+
         @GetMapping("/api/v1/data")
         @ResponseBody
-        public List<Products> getAllProducts() throws IOException {
-
-                // Imports JSON data from /static/data.json
-                var resource = new ClassPathResource("static/data.json");
-
-                // Creating an instance of ObjectMapper class
-                ObjectMapper objectMapper = new ObjectMapper();
-
-                // Parse JSON file to a list of Product objects
-                return objectMapper.readValue(
-                                resource.getInputStream(),
-                                objectMapper.getTypeFactory().constructCollectionType(List.class, Products.class));
+        public List<Products> getAllProducts() {
+                // Retrieve all products from MongoDB
+                return productRepository.findAll();
         }
 
 }

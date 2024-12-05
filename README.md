@@ -28,10 +28,17 @@ git clone https://github.com/whoiskurisu/spring-boot-application.git
 ```
 2. Open the ```spring-boot-application``` file in VS Code.
 
-3. Open up the integrated VS Code terminal: ``` ctrl + ` ```
+3. Create a ```.env``` file in the root directory. (This is the main folder where the ```src/```, ```pom.xml``` files are located)
 
-4. Run the server:
+4. Add an environment variable placeholder. (I will provide the Mongo URI)
+```
+MONGODB_URI=mongo-uri-here
+```
+
+5. Open up the integrated VS Code terminal: ``` ctrl + ` ```
+
+6. Run the server:
 ```
 ./mvnw spring-boot:run
 ```
-5. Open your browser and go to ```localhost:8080```
+7. Open your browser and go to ```localhost:8080```

@@ -1,4 +1,5 @@
 package com.example.demo;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		Dotenv dotenv = Dotenv.configure().load();
+        System.setProperty("MONGODB_URI", dotenv.get("MONGODB_URI"));
+        SpringApplication.run(DemoApplication.class, args);
 	}
 }
